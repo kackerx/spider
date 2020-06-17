@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title>思古视频服务</title>
+    <style type="text/css">
+        body,
+        html,
+        #a1,
+        #loading,
+        #error {
+            background-color: black;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            color: #999;
+            psotion: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading" align="center"><strong><br><br><br><br><span
+                class="tips">正在加载播放中,请稍等...</span></strong><br><br><img
+            src="//sc01.alicdn.com/kf/Hb2d6561d90884a49ba720ac698a323517.png" /></div>
+    <div id="error" align="center" style="display:none;color:#f90;"><br><br><br><br>视频解析失败/URL错误，请点击<a
+            href="javascript:location.reload();">重试</a>...</div>
+    <div id="a1" style="psotion:relative;"></div>
+    <input type="hidden" id="sigu_url"
+        value="asHiRg0uc6H6Ma6Ly92LnlvdWt1LmNvbS92X3Nob3cvaWRfWE5ESTROVFV4TXpZeU1BPT0uaHRtbAO0O0OO0O0O" />
+
+    <link rel="stylesheet" href="//cdn.staticfile.org/dplayer/1.25.0/DPlayer.min.css">
+    <script src="//cdn.staticfile.org/jquery/3.4.1/jquery.js"></script>
+    <script type="text/javascript" src="//cdn.staticfile.org/dplayer/1.25.0/DPlayer.min.js"></script>
+    <script type="text/javascript" src="//cdn.staticfile.org/hls.js/0.12.4/hls.min.js"></script>
+    <script type="text/javascript" src="//cdn.staticfile.org/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <!-- <script type="text/javascript" src="/ckplayer/ckplayer.js" charset="utf-8"></script> -->
+    <script type="text/javascript" src="./decode.js?20200203" charset="utf-8"></script>
+    <script type="text/javascript" src="./play2.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        ﾟωﾟﾉ = /｀ｍ´）ﾉ ~┻━┻   / /*´∇｀*/ ['_'];
+        o = (ﾟｰﾟ) = _ = 3;
+        c = (ﾟΘﾟ) = (ﾟｰﾟ) - (ﾟｰﾟ);
+        (ﾟДﾟ) = (ﾟΘﾟ) = (o ^ _ ^ o) / (o ^ _ ^ o);
+        (ﾟДﾟ) = {
+            ﾟΘﾟ: '_',
+            ﾟωﾟﾉ: ((ﾟωﾟﾉ == 3) + '_')[ﾟΘﾟ],
+            ﾟｰﾟﾉ: (ﾟωﾟﾉ + '_')[o ^ _ ^ o - (ﾟΘﾟ)],
+            ﾟДﾟﾉ: ((ﾟｰﾟ == 3) + '_')[ﾟｰﾟ]
+        };
+        (ﾟДﾟ)[ﾟΘﾟ] = ((ﾟωﾟﾉ == 3) + '_')[c ^ _ ^ o];
+        (ﾟДﾟ)['c'] = ((ﾟДﾟ) + '_')[(ﾟｰﾟ) + (ﾟｰﾟ) - (ﾟΘﾟ)];
+        (ﾟДﾟ)['o'] = ((ﾟДﾟ) + '_')[ﾟΘﾟ];
+        (ﾟoﾟ) = (ﾟДﾟ)['c'] + (ﾟДﾟ)['o'] + (ﾟωﾟﾉ + '_')[ﾟΘﾟ] + ((ﾟωﾟﾉ == 3) + '_')[ﾟｰﾟ] + ((ﾟДﾟ) + '_')[(ﾟｰﾟ) + (ﾟｰﾟ)] +
+        ((ﾟｰﾟ == 3) + '_')[ﾟΘﾟ] + ((ﾟｰﾟ == 3) + '_')[(ﾟｰﾟ) - (ﾟΘﾟ)] + (ﾟДﾟ)['c'] + ((ﾟДﾟ) + '_')[(ﾟｰﾟ) + (ﾟｰﾟ)] + (ﾟДﾟ)[
+            'o'] + ((ﾟｰﾟ == 3) + '_')[ﾟΘﾟ];
+        (ﾟДﾟ)['_'] = (o ^ _ ^ o)[ﾟoﾟ][ﾟoﾟ];
+        (ﾟεﾟ) = ((ﾟｰﾟ == 3) + '_')[ﾟΘﾟ] + (ﾟДﾟ).ﾟДﾟﾉ + ((ﾟДﾟ) + '_')[(ﾟｰﾟ) + (ﾟｰﾟ)] + ((ﾟｰﾟ == 3) + '_')[o ^ _ ^ o -
+            ﾟΘﾟ] + ((ﾟｰﾟ == 3) + '_')[ﾟΘﾟ] + (ﾟωﾟﾉ + '_')[ﾟΘﾟ];
+        (ﾟｰﾟ) += (ﾟΘﾟ);
+        (ﾟДﾟ)[ﾟεﾟ] = '\\';
+        (ﾟДﾟ).ﾟΘﾟﾉ = (ﾟДﾟ + ﾟｰﾟ)[o ^ _ ^ o - (ﾟΘﾟ)];
+        (oﾟｰﾟo) = (ﾟωﾟﾉ + '_')[c ^ _ ^ o];
+        (ﾟДﾟ)[ﾟoﾟ] = '\"';
+        (ﾟДﾟ)['_']((ﾟДﾟ)['_'](ﾟεﾟ + (ﾟДﾟ)[ﾟoﾟ] + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + ((o ^ _ ^ o) + (o ^ _ ^ o)) + (ﾟｰﾟ) + (ﾟДﾟ)[ﾟεﾟ] +
+            (ﾟΘﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + ((ﾟｰﾟ) + (o ^ _ ^ o)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + (o ^ _ ^ o) + (
+                ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟｰﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + ((o ^ _ ^ o) +
+                (o ^ _ ^ o)) + (ﾟДﾟ)[ﾟεﾟ] + ((ﾟｰﾟ) + (o ^ _ ^ o)) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟｰﾟ) + ((o ^ _ ^
+                o) - (ﾟΘﾟ)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟΘﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + ((o ^ _ ^ o) + (
+                o ^ _ ^ o)) + ((ﾟｰﾟ) + (o ^ _ ^ o)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + ((o ^ _ ^ o) - (ﾟΘﾟ)) +
+            (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + ((ﾟｰﾟ) + (o ^ _ ^ o)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (c ^ _ ^ o) + (
+                ﾟΘﾟ) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟｰﾟ) + (o ^ _ ^ o) + (ﾟДﾟ)[ﾟεﾟ] + ((o ^ _ ^ o) + (o ^ _ ^ o)) + ((
+                ﾟｰﾟ) + (
+                ﾟΘﾟ)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟｰﾟ) + (ﾟΘﾟ) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟΘﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + (
+                ﾟДﾟ)[
+                ﾟεﾟ] + (ﾟΘﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + ((ﾟｰﾟ) + (o ^ _ ^ o)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (c ^ _ ^ o) + (ﾟｰﾟ) +
+            (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + ((o ^ _ ^ o) + (o ^ _ ^ o)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + ((ﾟｰﾟ) + (
+                ﾟΘﾟ)) + (o ^ _ ^ o) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + (ﾟΘﾟ) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + ((ﾟｰﾟ) + (
+                o ^ _ ^ o)) + ((o ^ _ ^ o) - (ﾟΘﾟ)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + (
+                ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟΘﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟｰﾟ) + (ﾟΘﾟ) + (ﾟДﾟ)[ﾟεﾟ] + (
+                ﾟΘﾟ) +
+            ((o ^ _ ^ o) - (ﾟΘﾟ)) + (ﾟｰﾟ) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟｰﾟ) + ((ﾟｰﾟ) + (o ^ _ ^ o)) + (ﾟДﾟ)[ﾟεﾟ] + (
+                ﾟΘﾟ) + (c ^ _ ^ o) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟｰﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + (ﾟДﾟ)[ﾟεﾟ] + (
+                ﾟΘﾟ) + ((ﾟｰﾟ) + (o ^ _ ^ o)) + (c ^ _ ^ o) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟｰﾟ) + ((o ^ _ ^ o) - (ﾟΘﾟ)) + (
+                ﾟДﾟ)[
+                ﾟεﾟ] + (ﾟΘﾟ) + (ﾟΘﾟ) + ((ﾟｰﾟ) + (o ^ _ ^ o)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + (ﾟΘﾟ) + (ﾟДﾟ)[
+                ﾟεﾟ] + (ﾟΘﾟ) + (c ^ _ ^ o) + (ﾟｰﾟ) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟｰﾟ) + (ﾟｰﾟ) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (
+                ﾟｰﾟ) + ((ﾟｰﾟ) + (o ^ _ ^ o)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟｰﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (
+                (
+                    ﾟｰﾟ) + (o ^ _ ^ o)) + (ﾟΘﾟ) + (ﾟДﾟ)[ﾟεﾟ] + ((o ^ _ ^ o) + (o ^ _ ^ o)) + ((o ^ _ ^ o) + (o ^ _ ^
+                o)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟΘﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + (ﾟДﾟ)[ﾟεﾟ] + ((o ^ _ ^ o) + (o ^ _ ^ o)) + ((
+                o ^
+                _ ^ o) + (o ^ _ ^ o)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + ((ﾟｰﾟ) + (ﾟΘﾟ)) + ((o ^ _ ^ o) - (ﾟΘﾟ)) + (ﾟДﾟ)[ﾟεﾟ] +
+            ((o ^ _ ^ o) + (o ^ _ ^ o)) + ((o ^ _ ^ o) + (o ^ _ ^ o)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟｰﾟ) + ((ﾟｰﾟ) + (o ^
+                _ ^ o)) + (ﾟДﾟ)[ﾟεﾟ] + ((o ^ _ ^ o) + (o ^ _ ^ o)) + (c ^ _ ^ o) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟΘﾟ) + ((
+                ﾟｰﾟ) + (ﾟΘﾟ)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + ((o ^ _ ^ o) - (ﾟΘﾟ)) + (ﾟΘﾟ) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟΘﾟ) + ((
+                ﾟｰﾟ) + (o ^ _ ^ o)) + (ﾟДﾟ)[ﾟεﾟ] + ((o ^ _ ^ o) + (o ^ _ ^ o)) + (c ^ _ ^ o) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) +
+            (ﾟΘﾟ) + ((ﾟｰﾟ) + (o ^ _ ^ o)) + (ﾟДﾟ)[ﾟεﾟ] + ((o ^ _ ^ o) + (o ^ _ ^ o)) + (c ^ _ ^ o) + (ﾟДﾟ)[ﾟεﾟ] + (
+                ﾟΘﾟ) + (ﾟΘﾟ) + ((ﾟｰﾟ) + (o ^ _ ^ o)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟΘﾟ) + ((ﾟｰﾟ) + (o ^ _ ^ o)) + (ﾟДﾟ)[
+                ﾟεﾟ] + ((o ^ _ ^ o) + (o ^ _ ^ o)) + (c ^ _ ^ o) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟΘﾟ) + ((ﾟｰﾟ) + (o ^ _ ^
+                o)) + (ﾟДﾟ)[ﾟεﾟ] + ((o ^ _ ^ o) + (o ^ _ ^ o)) + (c ^ _ ^ o) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟΘﾟ) + (ﾟΘﾟ) + ((ﾟｰﾟ) +
+                (o ^ _ ^ o)) + (ﾟДﾟ)[ﾟεﾟ] + (ﾟｰﾟ) + ((o ^ _ ^ o) - (ﾟΘﾟ)) + (ﾟДﾟ)[ﾟoﾟ])(ﾟΘﾟ))('_');
+        $.post("sigu_jx.php", {
+                "url": $('#sigu_url').val(),
+                "key": sigu("9d07cbd6dfd25cb53cc2b87b9fc40dca"),
+                "key2": sigu2("2090931118822841"),
+                "key3": sigu3(key3),
+                "token": token,
+                "type": ""
+            },
+            function (data) {
+                if (data["code"] == 0) {
+                    sigu_play(data['play'], data['url'], data['tvid'], data['vid'], data['meta']);
+                } else {
+                    $('#error').html('<br><br><br><br>' + data["msg"]);
+                    $('#error').show();
+                    $('#loading').hide();
+                }
+            }, "json");
+
+        function set_ckplayer(flashvars, video) {
+            var params = {
+                bgcolor: '#FFF',
+                allowFullScreen: true,
+                allowScriptAccess: 'always',
+                wmode: 'transparent'
+            };
+            CKobject.embed('/ckplayer/ckplayer.swf', 'a1', 'ckplayer_a1', '100%', '100%', false, flashvars, video,
+                params);
+        }
+
+        function sigu_play(play, url, tvid, vid, meta) {
+            var isiPad = navigator.userAgent.match(/iPad|iPhone|Linux|Android|iPod/i) != null;
+            if (url != undefined) {
+                url = sigu_decode(url);
+            }
+            if (play != 'url') {
+                if (meta != undefined) {
+                    addMeta(meta);
+                } else {
+                    addMeta("no-referrer");
+                }
+            }
+            if (play == 'url') {
+                document.getElementById('a1').innerHTML =
+                    '<iframe width="100%" height="100%" allowFullScreen="true" allowTransparency="true" frameborder="0" scrolling="no" src="' +
+                    url + '"></iframe>';
+            } else if (play == 'qy_iframe') {
+                qy_iframe(tvid, vid);
+            } else if (play == 'qq_mp4') {
+                get_qq_mp4(url, vid);
+            } else if (isiPad) {
+                document.getElementById('a1').innerHTML = '<video src="' + url +
+                    '" controls="controls" width="100%" height="100%" style="psotion:relative;" poster="//i3.letvimg.com/lc04_live/201705/05/23/01/1493996499035new.gif"></video>';
+            } else if (play == "hls" || play == "normal") {
+                dp_play(url, play);
+            } else if (play == 'mp4') {
+                var flashvars = {
+                    f: url,
+                    c: 0,
+                    p: 1,
+                    h: 4,
+                    my_title: ''
+                };
+                var video = [url + '->video/mp4'];
+                set_ckplayer(flashvars, video)
+            } else if (play == 'm3u8') {
+                var flashvars = {
+                    f: '/ckplayer/m3u8.swf',
+                    a: url,
+                    c: 0,
+                    p: 1,
+                    s: 4,
+                    lv: 0,
+                    my_title: ''
+                };
+                var video = [url];
+                set_ckplayer(flashvars, video)
+            } else if (play == 'xml') {
+                var flashvars = {
+                    f: url,
+                    s: 2,
+                    c: 0,
+                    p: 1,
+                    v: 100,
+                    b: 1,
+                    e: 0,
+                    h: 4,
+                    e: 0,
+                    my_title: ''
+                };
+                set_ckplayer(flashvars, video);
+            }
+            $('#a1').show();
+            $('#loading').hide();
+        }
+
+        function dp_play(url, play) {
+            var webdata = {
+                set: function (key, val) {
+                    window.sessionStorage.setItem(key, val);
+                },
+                get: function (key) {
+                    return window.sessionStorage.getItem(key);
+                },
+                del: function (key) {
+                    window.sessionStorage.removeItem(key);
+                },
+                clear: function (key) {
+                    window.sessionStorage.clear();
+                }
+            };
+            var dplayer = new DPlayer({
+                element: document.getElementById("a1"),
+                autoplay: true,
+                video: {
+                    url: url,
+                    pic: 'https://p1.pstatp.com/origin/pgc-image/f6ace025802f44f8a7f9edf24cd96c8e',
+                    type: play
+                },
+                volume: 1.0,
+                preload: 'auto',
+                theme: '#28FF28',
+                contextmenu: [{
+                    text: '思古视频服务',
+                    link: 'https://api.sigujx.com/'
+                }]
+            });
+            dplayer.seek(webdata.get('play' + url));
+            setInterval(function () {
+                webdata.set('play' + url, dplayer.video.currentTime);
+            }, 1000);
+        }
+
+        function addMeta(b) {
+            var a = document.createElement("meta");
+            a.name = "referrer";
+            a.content = b;
+            document.getElementsByTagName("head")[0].appendChild(a);
+        }
+    </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?edc193f077b6b613964bcf4bbf0712d2";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</body>
+
+</html>

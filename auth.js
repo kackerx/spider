@@ -161,9 +161,12 @@ function getDayOfWeek(date) {
     return dow;
 }
 
-var x_ss_date = dateFormat(+new Date() + 0, 'UTC:ddd, dd mmm yyyy HH:MM:ss \'GMT\'')
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
 
 var _keys = require('babel-runtime/core-js/object/keys');
 var _keys2 = _interopRequireDefault(_keys);
@@ -240,20 +243,20 @@ function computeSignature(accessKeySecret, canonicalString) {
     return signature.update(new Buffer(canonicalString, 'utf8')).digest('base64');
 }
 
-function authorization(method, resource, subres, headers) {
+function authorization(method, resource, subres, headers, accessKeyId, accessKeySecret) {
     var stringToSign = canonicalString(method.toUpperCase(), resource, {
         headers: headers,
         parameters: subres
     });
 
-    accessKeyId = "STS.NUWRXB9zujsZx9719JFZvnLDm"
+    // accessKeyId = "STS.NUWRXB9zujsZx9719JFZvnLDm"
 
-    accessKeySecret = "7KHoPmpvBbDYRdGWYPt6T9nCxKqxFb2BqxH3ifQdnN6Y"
+    // accessKeySecret = "7KHoPmpvBbDYRdGWYPt6T9nCxKqxFb2BqxH3ifQdnN6Y"
 
     return signUtils_authorization(accessKeyId, accessKeySecret, stringToSign);
 }
 
-function main() {
+function main(securityToken, accessKeyId, accessKeySecret, keys, x_ss_date) {
     headers = {
         "Content-Length": 45793,
         "Content-Type": "image/jpeg",
@@ -261,15 +264,46 @@ function main() {
         // "authorization": "OSS STS.NUYTaAJFXtyPyngEpLrSmAaiF:hbt4RDqtP7E8B5ZVKd9bRvQx4Ks=",
         "x-oss-date": x_ss_date,
         // "x-oss-date": "Sun, 03 May 2020 02:08:32 GMT",
-        "x-oss-security-token": "CAISwQJ1q6Ft5B2yfSjIr5biGeL21KVU3bGxeh+G1TkfStVagYnvjzz2IHpKeXVrAOAXsPs0mmhT6fgZlol/GsdJGhWcZ5ott5gLrFv/M9Wb6pDo4LJYhMevRWWYVEYrQjR4qKOrIunGc9KBNnrT9EYqs6mYGBymW1u6S9Lr7bdsctUQWCShcDNCH604DwB+qcgcRxyzUPG2KUzSn3b3BkhlsRYGqQEZ06mkxdCG4RfzlUDzzvRvx778OZ+5dcJhTtMdEd6+x75xbbGTknwSuR1F6LkzhqZd/3Ce+YvFWwQLuU3ebreIroU/clY+JIpCQvUU8aSty6Qp4bOKy96skCwgZ78FD37tI6m729bBFe+TMdI0SK32IXyl0KrUbMeo71h9MSNFa1gUI4F+dCRqbBs3UXTfJbO5vVrAewGzmlA2e1bdAvAagAFAMQIDB00u9mGAbvZszDvj/VYZNXDADFLPwq5zTmVyyg4NAobD5vX3fE1gmRR9sJ51lWiaJCnjnN1a9syiMYPlxtJ9JMhqSPkmIy1O9Yjg6yRDMpZs+Db4NthTMJjWJ0GNQfb9oXTT7+vdunVXg0CA7ffEhVhoQ5yM+MTKeJ+4uA==",
+        "x-oss-security-token": securityToken,
         "x-oss-user-agent": "aliyun-sdk-js/5.2.0 Chrome 81.0.4044.122 on OS X 10.15.5 64-bit"
     }
-    resource = "/mgtv-bbqn/1/2005220055440861/44240.jpeg"
+    resource = "/mgtv-bbqn/" + keys + ".jpeg"
     subres = undefined
     method = "PUT"
 
-    return authorization(method, resource, subres, headers)
+    return authorization(method, resource, subres, headers, accessKeyId, accessKeySecret)
 }
 
-var sign = main()
-console.log({ sign: sign, date: x_ss_date })
+// var sign = main()
+// console.log({ sign: sign, date: x_ss_date })
+
+// express暴露服务
+const express = require("express")
+const bodyParser = require("body-parser")
+const app = express()
+
+app.use(bodyParser.urlencoded({
+    extended: false
+}))
+app.post("/getsign", function (req, resp, next) {
+
+    var result = req.body
+    let accessKeyId = result.accessKeyId
+    let accessKeySecret = result.accessKeySecret
+    let securityToken = result.securityToken
+    let keys = result.keys
+
+    let x_ss_date = dateFormat(+new Date() + 0, 'UTC:ddd, dd mmm yyyy HH:MM:ss \'GMT\'')
+
+
+    let res = {
+        'auth': main(securityToken, accessKeyId, accessKeySecret, keys, x_ss_date),
+        'date': x_ss_date
+    }
+    console.log(res)
+    resp.json(res)
+})
+
+app.listen(3000, () => {
+    console.log("listening: 3000")
+})

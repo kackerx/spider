@@ -1,7 +1,10 @@
-import requests
+def hehe(dic):
+    dic[1] = "new"
 
-res = requests.get(
-    "https://mgtv-bbqn.oss-cn-beijing.aliyuncs.com/1/2005220055440861/44240.jpeg"
-).content
 
-print(res)
+di = (0, "old")
+
+
+d = ((0, 1), (1, 2))
+
+print(list(d))
