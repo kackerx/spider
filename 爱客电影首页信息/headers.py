@@ -17,7 +17,6 @@ import sys
 x = sys.argv[1]
 
 res = re.sub("(?P<key>.*?): (?P<val>.*?)\n", "'\\1': '\\2',\n ", x)
-# res = re.sub("(?P<key>.*?): (?P<val>.*?)\n", "'\\1': '\\2',\n", s)
 print(res)
 
 
